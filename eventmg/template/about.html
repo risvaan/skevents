@@ -1,0 +1,382 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+About
+{% endblock %}
+
+{% block content %}
+<style>
+    /* General styles */
+    body {
+        font-family: 'Roboto', Arial, sans-serif;
+        line-height: 1.6;
+        background-color: #7d4444;
+    }
+
+    /* Hero section */
+    .hero {
+        background-color: #ffffff;
+        padding: 80px 0;
+        text-align: center;
+    }
+
+    .hero h1 {
+        color: #ba0000;
+        font-size: 50px;
+        font-family: "Times New Roman", Times, serif;
+        margin-bottom: 20px;
+    }
+
+    .hero p {
+        color: #000000;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 25px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    /* About Us section */
+    .about-us {
+        padding: 60px 0;
+        background-color: #ffffff;
+        text-align: center;
+    }
+
+    .about-us .container {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: left;
+    }
+
+    .about-us h2 {
+        color: #ba0000;
+        font-size: 35px;
+        font-family: "Lucida Console", "Courier New", monospace;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #000000;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+
+    .about-us p {
+        color: #000000;
+        font-size: 18px;
+        font-family: Verdana, sans-serif;
+        margin-bottom: 20px;
+        line-height: 1.8;
+    }
+
+    .about-us h3 {
+        color: #ba0000;
+        font-size: 25px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .about-us ul {
+        color: #d09898;
+        list-style-type: none;
+        padding: 0;
+        margin-top: 0;
+        text-align: left;
+    }
+
+    .about-us ul li {
+        color: #ca5959;
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    /* Team section */
+    .team {
+        padding: 60px 0;
+        background-color: #ba0000;
+        text-align: center;
+    }
+
+    .team .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .team h2 {
+        color: #ffffff;
+        font-size: 30px;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .team-members {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .team-member {
+        width: 300px;
+        margin: 20px;
+        padding: 20px;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.515);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .team-member:hover {
+        transform: translateY(-5px);
+    }
+
+    .team-member img {
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+
+    .team-member h4 {
+        color: #000000;
+        font-size: 24px;
+        font-family: 'Times New Roman', serif;
+        margin-bottom: 10px;
+    }
+
+    .team-member p {
+        font-family: 'Times New Roman', serif;
+        color: #000000;
+        font-size: 16px;
+        margin: 0;
+    }
+
+    /* Services section */
+    .section-padding {
+        padding: 60px 0;
+        background-color: #ffffff;
+        text-align: center;
+    }
+
+    .section-padding h2 {
+        color: #d71a1a;
+        font-size: 30px;
+        margin-bottom: 40px;
+        font-family: 'Roboto', Arial, sans-serif;
+        text-align: center;
+    }
+
+    .section-padding ul {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 0;
+        text-align: center;
+    }
+
+    .section-padding ul li {
+        color: #000000;
+        font-size: 18px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .section-padding ul li i {
+        margin-right: 10px;
+    }
+
+    .section-padding ul li .text-success {
+        color: #48b648;
+    }
+
+    /* Core Values section */
+    .core-values {
+        padding: 60px 0;
+        background-color: #261515;
+        text-align: center;
+    }
+
+    .core-values h2 {
+        color: #ba0000;
+        font-size: 30px;
+        margin-bottom: 40px;
+        font-family: 'Roboto', Arial, sans-serif;
+        text-align: center;
+    }
+
+    .core-values ul {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 0;
+        text-align: center;
+    }
+
+    .core-values ul li {
+        color: #333;
+        font-size: 18px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .core-values ul li i {
+        margin-right: 10px;
+    }
+
+    .core-values ul li .text-danger {
+        color: #f44336;
+    }
+
+    .core-values ul li .text-warning {
+        color: #ff9800;
+    }
+
+    .core-values ul li .text-primary {
+        color: #2196F3;
+    }
+
+    .core-values ul li .text-info {
+        color: #00BCD4;
+    }
+
+    /* Reviews section */
+    .reviews {
+        padding: 60px 0;
+        background-color: #823434;
+        text-align: center;
+    }
+
+    .reviews h2 {
+        color: #ba0000;
+        font-size: 30px;
+        margin-bottom: 40px;
+        font-family: 'Roboto', Arial, sans-serif;
+        text-align: center;
+    }
+
+    .review {
+        max-width: 800px;
+        margin: 0 auto 40px;
+        padding: 20px;
+        background-color: #ffffff;
+        border: 1px solid #000000;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: left;
+    }
+
+    .review p {
+        color: #000000;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .review-author {
+        margin-top: 10px;
+        font-style: italic;
+        color: #000000;
+    }
+    .btn-primary {
+        background-color: #ba0000;
+        color: #ffffff;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #8a0000;
+    }
+</style>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>About Us</h1>
+        <p>Your success is our mission. Learn more about our journey and values.</p>
+    </div>
+</section>
+
+<section class="about-us">
+    <div class="container">
+        <h2>Welcome to Our Company</h2>
+        <p>We are committed to delivering the best services to our clients. Our team of experts is dedicated to providing top-notch solutions tailored to meet your specific needs. We believe in excellence, innovation, and customer satisfaction.</p>
+        <h3>Our Mission</h3>
+        <p>Our mission is to empower businesses by providing innovative and reliable solutions. We strive to exceed expectations and build long-term relationships with our clients.</p>
+        <h3>Our Vision</h3>
+        <p>Our vision is to be the leading provider of exceptional services, known for our commitment to quality and customer satisfaction.</p>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <h2 class="text-secondary heading-secondary">Services We Offer</h2>
+        <ul class="list-unstyled">
+            <li class="mb-2"><i class="fas fa-check text-success"></i> Event Planning</li>
+            <li class="mb-2"><i class="fas fa-check text-success"></i> Venue Selection</li>
+            <li class="mb-2"><i class="fas fa-check text-success"></i> Vendor Coordination</li>
+            <li class="mb-2"><i class="fas fa-check text-success"></i> On-site Management</li>
+            <li class="mb-2"><i class="fas fa-check text-success"></i> Budget Management</li>
+            <li class="mb-2"><i class="fas fa-check text-success"></i> Event Design and Decor</li>
+            <li class="mb-2"><i class="fas fa-check text-success"></i> Entertainment and Activities</li>
+            <li class="mb-2"><i class="fas fa-check text-success"></i> Marketing and Promotion</li>
+        </ul>
+    </div>
+</section>
+
+<section class="section-padding">
+    <h2 class="text-secondary heading-secondary">Core Values</h2>
+    <ul class="list-unstyled">
+        <li class="mb-2"><i class="fas fa-heart text-danger"></i> Passion</li>
+        <li class="mb-2"><i class="fas fa-lightbulb text-warning"></i> Innovation</li>
+        <li class="mb-2"><i class="fas fa-handshake text-success"></i> Integrity</li>
+        <li class="mb-2"><i class="fas fa-users text-primary"></i> Collaboration</li>
+        <li class="mb-2"><i class="fas fa-thumbs-up text-info"></i> Excellence</li>
+    </ul>
+</section>
+
+<section class="team">
+    <div class="container">
+        <h2>Meet Our Team</h2>
+        <div class="team-members">
+            <div class="team-member">
+                <img src="{% static 'images/team8.jpeg' %}" alt="John Doe">
+                <h4>John Doe</h4>
+                <p>CEO</p>
+            </div>
+            <div class="team-member">
+                <img src="{% static 'images/team9.jpeg' %}" alt="Jane Smith">
+                <h4>Jane Smith</h4>
+                <p>CTO</p>
+            </div>
+            <div class="team-member">
+                <img src="{% static 'images/team3.jpg' %}" alt="Emily Johnson">
+                <h4>Emily Johnson</h4>
+                <p>COO</p>
+            </div>
+            <!-- Add more team members as needed -->
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <h2 class="text-secondary heading-secondary">Customer Reviews</h2>
+    <div class="container">
+        <div class="review">
+            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet metus eget mauris tristique accumsan. Nullam quis justo vel enim consequat tempor. Duis efficitur urna non ultricies congue."</p>
+            <p class="review-author">- John Smith, CEO at ABC Inc.</p>
+        </div>
+        <div class="review">
+            <p>"Vestibulum gravida nunc ac mauris accumsan, nec condimentum neque dapibus. Donec venenatis diam nec fermentum tincidunt. Fusce fringilla, velit et efficitur fermentum, mauris urna cursus augue."</p>
+            <p class="review-author">- Jane Doe, Founder of XYZ Co.</p>
+        </div>
+        <a href="{% url 'events' %}" class="btn btn-primary mt-4">Learn More Our Events</a>
+    </div>
+</section>
+
+
+
+
+{% endblock %}

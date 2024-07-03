@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Booking
+{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center vh-100" style="background-color: #ffffff;">
+    <div class="p-5" style="width: 100%; max-width: 600px; background-color: #ba0000; border-radius: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <h2 class="text-center mb-4" style="color: #ffffff;">Book Your Event</h2>
+        <form action="" method="POST" class="my-form" style="padding: 30px; background-color: #ffffff; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            {% csrf_token %}
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label for="name" style="color: #ba0000;">Name</label>
+                <input type="text" id="name" name="name" class="form-control" style="border-radius: 5px;" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label for="email" style="color: #ba0000;">Email</label>
+                <input type="email" id="email" name="email" class="form-control" style="border-radius: 5px;" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label for="event_type" style="color: #ba0000;">Event Type</label>
+                <select id="event_type" name="event_type" class="form-control" style="border-radius: 5px;" required>
+                    <option value="">Select Event Type</option>
+                    <option value="wedding">Wedding</option>
+                    <option value="birthday">Birthday Party</option>
+                    <option value="conference">Conference</option>
+                    <option value="concert">Concert</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label for="appointment_date" style="color: #ba0000;">Appointment Date</label>
+                <input type="date" id="appointment_date" name="appointment_date" class="form-control" style="border-radius: 5px;" required>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary mr-2" style="background-color: #ba0000; color: #ffffff; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px;">
+                    Book now
+                </button>
+                <a href="{% url 'index' %}" class="btn btn-secondary" style="padding: 10px 20px; border-radius: 5px; color: #ffffff; background-color: #000000;">Cancel</a>
+            </div>        
+        </form>
+    </div>
+</div>
+
+<style>
+    /* Hover effect for Book Appointment button */
+    .btn-primary:hover {
+        background-color: #950000; /* Darker shade of red */
+    }
+
+    /* Adjustments for Cancel button */
+    .btn-secondary {
+        background-color: #6c757d; /* Dark gray */
+        color: #ffffff; /* White text */
+    }
+
+    .btn-secondary:hover {
+        background-color: #495057; /* Darker shade of gray */
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/stylelog.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to right, #ba0000, #000000);
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .title {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #ba0000;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-details .input-box {
+            margin-bottom: 15px;
+        }
+
+        .user-details .input-box label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+            color: #000000;
+        }
+
+        .user-details .input-box input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ba0000;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        .user-details .input-box input:focus {
+            border-color: #000000;
+            outline: none;
+        }
+
+        .button input {
+            width: 100%;
+            padding: 10px;
+            background-color: #ba0000;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button input:hover {
+            background-color: #000000;
+        }
+
+        .alert-message {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="title">Login</div>
+    <div class="content">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="user-details">
+                <div class="input-box">
+                    <label>User Name:</label>
+                    <input type="text" name="username" required>
+                </div>
+                <div class="input-box">
+                    <label>Password:</label>
+                    <input type="password" name="password" required>
+                </div>
+            </div>
+            <div class="button">
+                <input type="submit" name="submit" value="Login">
+            </div>
+        </form>
+        <div class="alert-message">
+            {% for message in messages %}
+            <script>
+                alert('{{ message }}');
+            </script>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Events
+{% endblock %}
+
+{% block content %}
+<style>
+/* Additional CSS for styling events */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+    color: #333;
+    width: 100%;
+    max-width: 300px;
+    margin: 10px;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-family: 'Arial', sans-serif;
+}
+
+.card-text {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-family: 'Arial', sans-serif;
+}
+
+.booking-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #fa0909;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.booking-button:hover {
+    background-color: #ffffff;
+    color: #fa0909;
+}
+
+.events-background {
+    background-color: #f8f9fa;
+    padding: 30px 0;
+}
+
+.colorful-background {
+    background-image: linear-gradient(120deg, #ffffff 0%, #ba0000 100%);
+    padding: 135px 0;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.events-heading {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+</style>
+
+<div class="colorful-background">
+    <h2 class="events-heading">EVENTS</h2>
+    <div class="container">
+        <div class="row">
+            <div class="card-container">
+                {% for event in eve %}
+                <div class="card">
+                    <img src="{{ event.img.url }}" class="card-img-top" alt="{{ event.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ event.name }}</h5>
+                        <p class="card-text">{{ event.desc }}</p>
+                        <a href="{% url 'booking' %}" class="booking-button">Book Now</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

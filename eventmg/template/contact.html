@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        /* Reset CSS */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ba0000;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #ba0000;
+        }
+
+        form {
+            display: grid;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: grid;
+            gap: 8px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #ba0000;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #000000;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            border-color: #0e55b2;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        button {
+            background-color: #ba0000;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #c19c9c;
+            color: #ba0000;
+        }
+
+        .response-msg {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #dff0d8;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            color: #155724;
+        }
+
+        /* Back button styles */
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #31404d;
+            color: #fff;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #191f25;
+        }
+    </style>
+    <script>
+        function showAlert(event) {
+            event.preventDefault();  // Prevent form from submitting immediately
+            alert('Thank you for contacting us! Your message has been sent.');
+            event.target.submit();  // Now submit the form
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Contact Us</h2>
+        <form method="post" onsubmit="showAlert(event)">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_name">Your Name:</label>
+                <input type="text" id="id_name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="id_email">Your Email:</label>
+                <input type="email" id="id_email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="id_message">Message:</label>
+                <textarea id="id_message" name="message" required></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        {% if message %}
+            <div class="response-msg">
+                {{ message }}
+            </div>
+        {% endif %}
+        <a href="/" class="back-button">Back to Home</a>
+    </div>
+</body>
+</html>
